@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:47:00 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/18 16:23:22 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/09/26 14:48:22 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,53 +20,30 @@
 # include <stdlib.h>
 # include <math.h>
 # include <string.h>
+# include "structs.h"
+# include "fcntl.h"
 
 /*			Macros			*/
 # define ERR_ARGS "usage: ./cub3d <path/to/map>"
 # define ERR_CUB_FORMAT "Ivalid map file: file extension is not .cub"
-
-
-/* Structs */
-
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*win_ptr;
-	void	*img_ptr;
-	int		*img_addr;
-	int		pixel_bits;
-	int		size_line;
-	int		endian;
-	int		win_width;
-	int		win_height;
-}	t_mlx;
-
-typedef	struct s_map
-{
-	int		fd;
-	int		line_num;
-	
-	
-}	t_map;
-
-typedef struct s_data
-{
-	t_mlx	mlx;
-	t_map	map;
-}	t_data;
-
-
-
-
-
+# define ERR_OPEN "Error opening file descriptor"
+# define MALLOC "Memory allocation failed"
+# define MAPSTART "Map start not found"
 
 /*  Functions  */
 
 /* Error Handling*/
-int		error_msg(char *str, int code);
+int		error_code_msg(char *str, int code);
+void	error_msg(char *str);
 
 /* Arguments Check	*/
 int		is_cub(char *av);
 int		arg_check(int ac, char **av);
+
+/* Parsing */
+void	fill_mapdata(t_mapdata *mapdata);
+void	parse_filedata(char *path, t_mapdata *mapdata);
+int		count_lines(char *path);
+
 
 #endif
