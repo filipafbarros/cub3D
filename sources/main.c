@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:05:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/25 16:31:18 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:13:32 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 int	main(int ac, char **av)
 {
-	// t_data	data;
-	t_mapdata	mapdata;
+	t_data	game_data;
 
 	(void)av;
 
 	if (arg_check(ac, av) != 0)
 		return (1);
-	parse_filedata(av[1], &mapdata);
+	init_all(&game_data);
+	parse_and_validate_game_data(av[1], &game_data);
 
-	// initialize data
-	// parsing
-	// init mlx
+
 	// render
 	// mlx loops
 }

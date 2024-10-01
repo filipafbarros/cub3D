@@ -6,11 +6,22 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:15:17 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/26 14:23:06 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:00:51 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+int	parse_and_validate_game_data(const char *filename, t_data *game_data)
+{
+	if (parse_filedata(filename, &game_data->mapdata) != 0)
+		return (error_code_msg(ERR_PARSING, 1));
+	// Parse textures and colors
+	if (parse_map(&game_data->mapdata, &game_data->game) != 0)
+		return (1);
+	// if (validate)
+	return (0);
+}
 
 int	count_lines(char *path)
 {
@@ -33,25 +44,24 @@ int	count_lines(char *path)
 	return (line_count);
 }
 
-void	parse_filedata(char *path, t_mapdata *mapdata)
+int	parse_filedata(char *path, t_mapdata *mapdata)
 {
 	mapdata->path = path;
 	mapdata->num_lines = count_lines(path);
 	mapdata->file = ft_calloc(mapdata->num_lines + 1, sizeof(char *));
 	if (!mapdata->file)
 	{
-		error_msg(MALLOC);
-		return ;
+		return (error_code_msg(MALLOC, 1));
 	}
 	mapdata->fd = open(path, O_RDONLY);
 	if (mapdata->fd == -1)
 	{
-		error_msg(ERR_OPEN);
 		free(mapdata->file);
-		return ;
+		return (error_code_msg(ERR_OPEN, 1));
 	}
 	fill_mapdata(mapdata);
 	close(mapdata->fd);
+	return (0);
 }
 
 void	fill_mapdata(t_mapdata *mapdata)

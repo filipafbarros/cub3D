@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:13:39 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/26 16:33:06 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:52:00 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ int	is_valid_map_char(char c)
 {
 	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' \
 		|| c == 'W');
+}
+
+int	validate_map_char(char c, int *player_count)
+{
+	if (!ft_strchr("10NSEW", c))
+		return (error_code_msg(ERR_INV_LETTER, 1));
+	if (ft_strchr("NSEW", c))
+	{
+		(*player_count)++;
+		if ((*player_count) > 1)
+			return (error_code_msg(ERR_NUM_PLAYER, 1));
+	}
+	return (0);
 }

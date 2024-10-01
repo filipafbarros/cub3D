@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:20 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/26 14:22:05 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:52:53 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,15 @@ typedef struct s_mapdata
 
 typedef struct s_game_config
 {
-	char	**map;
-	int		map_height;
-	int		map_width;
+	char		**map;
+	int			map_height;
+	int			map_width;
+	t_player	*player;
 }	t_game_config;
 
 typedef struct s_player
 {
-	char		dir;
+	char		start_dir;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;

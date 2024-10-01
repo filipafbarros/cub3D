@@ -6,29 +6,47 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:34:38 by fibarros          #+#    #+#             */
-/*   Updated: 2024/09/26 16:42:33 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 14:51:56 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_map_elements(char **file, int map_start, int map_height)
+int	validate_map(t_game_config *config)
 {
-	int		i;
-	int		j;
+	if (!config->map)
+		return (error_code_msg(ERR_MAP_MISSING, 1));
+	if (check_map_elements(config->map) == 1)
+		return (1);
+	// validade player position
+	// ensure the map os surrounded by walls
+	// ensure there's no extraneous content after the map
+}
 
-	i = map_start;
-	while (i < map_height + map_start)
+int	check_map_elements(char **map)
+{
+	int	i;
+	int	j;
+	int	player_count;
+
+	i = 0;
+	player_count = 0;
+	while (map[i])
 	{
 		j = 0;
-		while (file[i][j])
+		while (map[i][j])
 		{
-			while (ft_isspace(file[i][j]))
-				j++;
-			
+			if (validate_map_char(map[i][j], &player_count) == 1)
+				return (1);
+			j++;
 		}
+		i++;
 	}
+	if (player_count == 0)
+		return (error_code_msg(ERR_NO_PLAYER, 1));
+	return (0);
 }
+
 
 
 
