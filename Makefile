@@ -6,7 +6,7 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 15:01:42 by fibarros          #+#    #+#              #
-#    Updated: 2024/09/25 16:29:34 by fibarros         ###   ########.fr        #
+#    Updated: 2024/10/01 17:23:04 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,10 @@ endef
 #                                 SOURCES                                      #
 # **************************************************************************** #
 
-SRCS = sources/main.c sources/error.c sources/arg_check.c\
-		sources/parsing/map_check.c sources/parsing/parse_data.c sources/parsing/parsing_utils.c
+SRCS = sources/main.c sources/error.c sources/arg_check.c \
+		sources/parsing/parse_map.c sources/parsing/parse_data.c \
+		sources/parsing/parsing_utils.c sources/parsing/validate_map.c \
+		sources/init/init_data.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -89,7 +91,7 @@ $(LIBFT):
 	@echo "${CHECK} Libft compiled                 ✅"
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(call print_status,"Creating Minishell...")
+	$(call print_status,"Creating Cub3D...")
 	@$(CC) $(INCLUDES) $(OBJS) $(LIBFT) $(RL_LIB) $(LDFLAGS) -o $@ > /dev/null
 	@echo "${CHECK} Compiling utilities and sources"
 

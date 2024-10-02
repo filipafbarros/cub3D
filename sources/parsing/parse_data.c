@@ -6,20 +6,21 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:15:17 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 16:00:51 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:53:41 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	parse_and_validate_game_data(const char *filename, t_data *game_data)
+int	parse_and_validate_game_data(char *filename, t_data *game_data)
 {
 	if (parse_filedata(filename, &game_data->mapdata) != 0)
 		return (error_code_msg(ERR_PARSING, 1));
 	// Parse textures and colors
 	if (parse_map(&game_data->mapdata, &game_data->game) != 0)
 		return (1);
-	// if (validate)
+	if (validate_map(&game_data->game) != 0)
+		return (1);
 	return (0);
 }
 

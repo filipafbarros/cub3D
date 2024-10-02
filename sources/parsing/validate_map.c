@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:34:38 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 14:51:56 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:21:33 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	validate_map(t_game_config *config)
 	// validade player position
 	// ensure the map os surrounded by walls
 	// ensure there's no extraneous content after the map
+	return (0);
 }
 
 int	check_map_elements(char **map)
@@ -47,6 +48,13 @@ int	check_map_elements(char **map)
 	return (0);
 }
 
+int	check_row(char *row)
+{
+	
+}
+
+
+// int	validate_player_position()
 
 
 

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:20 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 14:52:53 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/01 16:55:01 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ typedef struct s_mapdata
 	char	**file;
 }	t_mapdata;
 
+typedef struct s_player
+{
+	char		*start_dir;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+}	t_player;
+
 typedef struct s_game_config
 {
 	char		**map;
@@ -46,14 +55,7 @@ typedef struct s_game_config
 	t_player	*player;
 }	t_game_config;
 
-typedef struct s_player
-{
-	char		start_dir;
-	double		pos_x;
-	double		pos_y;
-	double		dir_x;
-	double		dir_y;
-}	t_player;
+
 
 typedef struct s_data
 {
