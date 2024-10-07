@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/24 15:27:20 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 16:55:01 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:53:06 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_game_config
 {
 	char		**map;
 	int			map_height;
-	int			map_width;
+	// int			map_width;
 	t_player	*player;
 }	t_game_config;
 

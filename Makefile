@@ -6,7 +6,7 @@
 #    By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/16 15:01:42 by fibarros          #+#    #+#              #
-#    Updated: 2024/10/01 17:23:04 by fibarros         ###   ########.fr        #
+#    Updated: 2024/10/07 16:34:33 by fibarros         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ endef
 SRCS = sources/main.c sources/error.c sources/arg_check.c \
 		sources/parsing/parse_map.c sources/parsing/parse_data.c \
 		sources/parsing/parsing_utils.c sources/parsing/validate_map.c \
-		sources/init/init_data.c
+		sources/init/init_data.c sources/parsing/validate_utils.c
 
 OBJS = $(SRCS:.c=.o)
 

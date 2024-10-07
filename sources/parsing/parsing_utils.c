@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 16:13:39 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 17:14:01 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/07 13:46:09 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	validate_map_char(char c, int *player_count)
 		(*player_count)++;
 		if ((*player_count) > 1)
 			return (error_code_msg(ERR_NUM_PLAYER, 1));
+		if ((*player_count) == 0)
+			return (error_code_msg(ERR_NO_PLAYER, 1));
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:05:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 17:22:38 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:34:51 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 		return (1);
 	init_all(&game_data);
 	parse_and_validate_game_data(av[1], &game_data);
-	print_map(&game_data.game);
+	// print_map(&game_data.game);
 
 
 	// render

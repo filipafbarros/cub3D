@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:15:17 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 16:53:41 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/07 17:30:56 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,17 @@ void	fill_mapdata(t_mapdata *mapdata)
 {
 	int		row;
 	char	*line;
+	int		len;
 
 	row = 0;
 	line = get_next_line(mapdata->fd);
 	while (line)
 	{
-		mapdata->file[row++] = line;
+		mapdata->file[row] = line;
+		len = ft_strlen(line);
+		if (mapdata->file[row][len - 1] == '\n')
+			mapdata->file[row][len - 1] = '\0';
+		row++;
 		line = get_next_line(mapdata->fd);
 	}
 	mapdata->file[row] = NULL;

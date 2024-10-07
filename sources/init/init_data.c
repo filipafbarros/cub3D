@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 17:17:24 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/01 15:20:42 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/07 16:58:15 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,5 @@ void	init_game_config(t_game_config *config)
 {
 	config->map = NULL;
 	config->map_height = 0;
-	config->map_width = 0;
 	config->player = NULL;
 }
