@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:47:00 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/07 16:57:38 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/08 14:41:49 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char		**copy_map(char **map, int height);
 
 
 /* Test */
-//void print_map(t_game_config *config);
+void print_map(t_game_config *config);
 
 
 #endif

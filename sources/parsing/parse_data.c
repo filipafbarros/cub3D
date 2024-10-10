@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 16:15:17 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/07 17:30:56 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/09 11:14:56 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	parse_and_validate_game_data(char *filename, t_data *game_data)
 	// Parse textures and colors
 	if (parse_map(&game_data->mapdata, &game_data->game) != 0)
 		return (1);
+	// print_map(&game_data->game);
 	if (validate_map(&game_data->game) != 0)
 		return (1);
 	return (0);
@@ -69,18 +70,41 @@ void	fill_mapdata(t_mapdata *mapdata)
 {
 	int		row;
 	char	*line;
-	int		len;
 
 	row = 0;
 	line = get_next_line(mapdata->fd);
 	while (line)
 	{
-		mapdata->file[row] = line;
-		len = ft_strlen(line);
-		if (mapdata->file[row][len - 1] == '\n')
-			mapdata->file[row][len - 1] = '\0';
-		row++;
+		mapdata->file[row++] = line;
 		line = get_next_line(mapdata->fd);
 	}
 	mapdata->file[row] = NULL;
 }
+
+// void	fill_mapdata(t_mapdata *mapdata)
+// {
+// 	char	*line;
+// 	int		row;
+// 	int		len;
+
+// 	row = 0;
+// 	line = get_next_line(mapdata->fd);
+// 	while (line != NULL)
+// 	{
+// 		len = ft_strlen(line);
+// 		if (line[len - 1] == '\n')
+// 			len--;
+// 		mapdata->file[row] = ft_calloc(len + 1, sizeof(char));
+// 		if (!mapdata->file[row])
+// 		{
+// 			error_msg(MALLOC);
+// 			//free_array
+// 			return ;
+// 		}
+// 		ft_strlcpy(mapdata->file[row], line, len + 1);
+// 		free(line);
+// 		row++;
+// 		line = get_next_line(mapdata->fd);
+// 	}
+// 	mapdata->file[row] = NULL;
+// }

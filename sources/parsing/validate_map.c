@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:34:38 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/07 16:57:26 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/09 17:09:32 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,32 +45,34 @@ int	check_map_elements(char **map)
 	return (0);
 }
 
-void	flood_fill(int x, int y, char **tiles, t_game_config *game)
+void	flood_fill(int x, int y, char **grid, t_game_config *game)
 {
 	if (x < 0 || y < 0 || y >= game->map_height || x >= \
-		(int)ft_strlen(tiles[y]))
+		(int)ft_strlen(grid[y]))
 	{
 		//free array
 		error_msg(ERR_MAP_INV);
+		return ;
 	}
-	if (tiles[x][y] == ' ')
+	if (grid[y][x] == 'H' || grid[y][x] == "1")
+		return ;
+	if (grid[y][x] == ' ')
 	{
-		if ((x > 0 && tiles[y][x - 1] == '0') || (x < (int)ft_strlen(tiles[y]) \
-			- 1 && tiles[y][x + 1] == '0') || (y > 0 && tiles[y - 1][x] == '0') \
-			|| (y < game->map_height - 1 && tiles[y + 1][x] == '0'))
+		if ((x > 0 && grid[y][x - 1] == '0') || (x < (int)ft_strlen(grid[y]) \
+			- 1 && grid[y][x + 1] == '0') || (y > 0 && grid[y - 1][x] == '0') \
+			|| (y < game->map_height - 1 && grid[y + 1][x] == '0'))
 		{
 			// free array
 			error_msg(ERR_MAP_GAP);
+			return ;
 		}
 		return ;
 	}
-	if (tiles[y][x] == 'H' || tiles[y][x] == -1)
-		return ;
-	tiles[y][x] = 'H';
-	flood_fill(x + 1, y, tiles, game);
-	flood_fill(x - 1, y, tiles, game);
-	flood_fill(x, y + 1, tiles, game);
-	flood_fill(x, y - 1, tiles, game);
+	grid[y][x] = 'H';
+	flood_fill(x + 1, y, grid, game);
+	flood_fill(x - 1, y, grid, game);
+	flood_fill(x, y + 1, grid, game);
+	flood_fill(x, y - 1, grid, game);
 }
 
 int	validate_walls(t_game_config *game)

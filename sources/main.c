@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 12:05:53 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/07 16:34:51 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/09 10:54:48 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void print_map(t_game_config *config)
     printf("Parsed Map:\n");
     while (i < config->map_height)
     {
-        printf("%s", config->map[i]);
+        printf("%s\n", config->map[i]);
         i++;
     }
 }
