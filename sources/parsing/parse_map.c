@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:23:44 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/09 10:44:37 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:56:09 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ void	get_map(t_game_config *config, char **file, int map_start)
 	}
 	config->map[i] = NULL;
 }
+
+
 
 // void	get_map(t_game_config *config, char **file, int map_start)
 // {

@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:34:38 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/09 17:09:32 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/14 14:41:20 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,55 +45,71 @@ int	check_map_elements(char **map)
 	return (0);
 }
 
-void	flood_fill(int x, int y, char **grid, t_game_config *game)
+int	flood_fill(int x, int y, char **grid, t_game_config *game)
 {
 	if (x < 0 || y < 0 || y >= game->map_height || x >= \
 		(int)ft_strlen(grid[y]))
 	{
 		//free array
-		error_msg(ERR_MAP_INV);
-		return ;
+		return (error_code_msg(ERR_MAP_BOUNDS, 1));
 	}
-	if (grid[y][x] == 'H' || grid[y][x] == "1")
-		return ;
-	if (grid[y][x] == ' ')
-	{
-		if ((x > 0 && grid[y][x - 1] == '0') || (x < (int)ft_strlen(grid[y]) \
-			- 1 && grid[y][x + 1] == '0') || (y > 0 && grid[y - 1][x] == '0') \
-			|| (y < game->map_height - 1 && grid[y + 1][x] == '0'))
-		{
-			// free array
-			error_msg(ERR_MAP_GAP);
-			return ;
-		}
-		return ;
-	}
+	if (grid[y][x] == 'H' || grid[y][x] == '1')
+		return (0);
 	grid[y][x] = 'H';
-	flood_fill(x + 1, y, grid, game);
-	flood_fill(x - 1, y, grid, game);
-	flood_fill(x, y + 1, grid, game);
-	flood_fill(x, y - 1, grid, game);
+	if (flood_fill(x + 1, y, grid, game) || flood_fill(x - 1, y, grid, game) \
+	|| flood_fill(x, y + 1, grid, game) || flood_fill(x, y - 1, grid, game))
+		return (1);
+	return (0);
 }
+
+
+// void	flood_fill(int x, int y, char **grid, t_game_config *game)
+// {
+// 	if (x < 0 || y < 0 || y >= game->map_height || x >= \
+// 		(int)ft_strlen(grid[y]))
+// 	{
+// 		//free array
+// 		error_msg(ERR_MAP_INV);
+// 		return ;
+// 	}
+// 	if (grid[y][x] == 'H' || grid[y][x] == "1")
+// 		return ;
+// 	if (grid[y][x] == ' ')
+// 	{
+// 		if ((x > 0 && grid[y][x - 1] == '0') || (x < (int)ft_strlen(grid[y]) \
+// 			- 1 && grid[y][x + 1] == '0') || (y > 0 && grid[y - 1][x] == '0') \
+// 			|| (y < game->map_height - 1 && grid[y + 1][x] == '0'))
+// 		{
+// 			// free array
+// 			error_msg(ERR_MAP_GAP);
+// 			return ;
+// 		}
+// 		return ;
+// 	}
+// 	grid[y][x] = 'H';
+// 	flood_fill(x + 1, y, grid, game);
+// 	flood_fill(x - 1, y, grid, game);
+// 	flood_fill(x, y + 1, grid, game);
+// 	flood_fill(x, y - 1, grid, game);
+// }
 
 int	validate_walls(t_game_config *game)
 {
-	int		i;
-	int		j;
 	char	**map_copy;
 
 	map_copy = copy_map(game->map, game->map_height);
-	i = 0;
-	while (map_copy[i])
+	if (!map_copy)
+		return (error_code_msg(MALLOC, 1));
+	if (check_if_map_is_enclosed(game))
 	{
-		j = 0;
-		while (map_copy[i][j])
-		{
-			if (ft_strchr("NSEW", map_copy[i][j]))
-				flood_fill(j, i, map_copy, game);
-			j++;
-		}
-		i++;
+		//free map
+		return (1);
 	}
-	//free array
+	if (check_walkable_path(map_copy, game))
+	{
+		// free map
+		return (1);
+	}
+	//free map
 	return (0);
 }

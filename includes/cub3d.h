@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 11:47:00 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/08 14:41:49 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:15:38 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@
 # define ERR_NO_PLAYER "No player found"
 # define ERR_PARSING "There's an error with the file parsing"
 # define ERR_MAP_INV "Invalid map"
+# define ERR_MAP_BOUNDS "Invalid map: out of bounds"
 # define ERR_MAP_GAP "Invalid map: there's a gap in the map"
+# define ERR_MAP_LIMIT "Invalid map: top or bottom not enclosed by walls"
+# define ERR_MAP_SIDES "Invalid map: map side walls not enclosed by walls"
 
 
 /*  Functions  */
@@ -73,8 +76,9 @@ int			check_map_elements(char **map);
 int			validate_map_char(char c, int *player_count);
 int			validate_map(t_game_config *config);
 int			check_map_elements(char **map);
-void    	flood_fill(int x, int y, char **tiles, t_game_config *config);
+int			flood_fill(int x, int y, char **grid, t_game_config *game);
 int			validate_walls(t_game_config *config);
+
 
 
 /*	Utils	*/
@@ -83,6 +87,9 @@ int			find_map_start(char **file, int num_lines);
 int			is_map_row(char *line);
 int			is_valid_map_char(char c);
 char		**copy_map(char **map, int height);
+int			check_top_and_bottom(char **map, int i, int j);
+int			check_if_map_is_enclosed(t_game_config *game);
+int			check_walkable_path(char **map_copy, t_game_config *game);
 
 
 /* Test */
