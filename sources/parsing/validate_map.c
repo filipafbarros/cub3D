@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 14:34:38 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/14 14:41:20 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:18:58 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	check_map_elements(char **map)
 	while (map[i])
 	{
 		j = 0;
+		while (ft_isspace(map[i][j]))
+			j++;
 		while (map[i][j])
 		{
 			if (validate_map_char(map[i][j], &player_count) == 1)
@@ -44,6 +46,28 @@ int	check_map_elements(char **map)
 	}
 	return (0);
 }
+
+// int	check_map_elements(char **map)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	player_count;
+
+// 	i = 0;
+// 	player_count = 0;
+// 	while (map[i])
+// 	{
+// 		j = 0;
+// 		while (map[i][j])
+// 		{
+// 			if (validate_map_char(map[i][j], &player_count) == 1)
+// 				return (1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	flood_fill(int x, int y, char **grid, t_game_config *game)
 {

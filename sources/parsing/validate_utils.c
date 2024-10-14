@@ -6,7 +6,7 @@
 /*   By: fibarros <fibarros@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 15:56:57 by fibarros          #+#    #+#             */
-/*   Updated: 2024/10/14 12:27:28 by fibarros         ###   ########.fr       */
+/*   Updated: 2024/10/14 15:36:04 by fibarros         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,17 @@ int	check_walkable_path(char **map_copy, t_game_config *game)
 		}
 		i++;
 	}
+	new_print_map(map_copy);
 	return (0);
+}
+
+void    new_print_map(char **map)
+{
+    int i = 0;
+    
+    while (map[i])
+    {
+        printf("%s\n", map[i]);
+        i++;
+    }
 }
